@@ -30,5 +30,3 @@ public class HomeControllerTests {
         .andExpect(content().string(containsString("Welcome")));
     }
 }
-
-//todo: changed settings for static imports
