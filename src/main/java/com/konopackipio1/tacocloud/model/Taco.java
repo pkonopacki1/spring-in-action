@@ -1,4 +1,4 @@
-package com.konopackipio1.tacocloud;
+package com.konopackipio1.tacocloud.model;
 
 import java.util.List;
 

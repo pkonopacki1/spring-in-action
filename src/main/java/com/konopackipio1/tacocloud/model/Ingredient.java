@@ -1,4 +1,4 @@
-package com.konopackipio1.tacocloud;
+package com.konopackipio1.tacocloud.model;
 
 import lombok.Data;
 import lombok.RequiredArgsConstructor;

@@ -1,14 +1,17 @@
-package com.konopackipio1.tacocloud;
+package com.konopackipio1.tacocloud.controllers;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import com.konopackipio1.tacocloud.Ingredient.Type;
+import com.konopackipio1.tacocloud.model.Ingredient;
+import com.konopackipio1.tacocloud.model.Taco;
+import com.konopackipio1.tacocloud.model.Ingredient.Type;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 
 import lombok.extern.slf4j.Slf4j;
@@ -36,11 +39,12 @@ public class DesignController {
 
         Type[] types = Ingredient.Type.values();
 
+        // Here we add object to model, which we than can use in the template
         for (Type type : types) {
             model.addAttribute(type.name().toLowerCase(), filterByType(ingredients, type));        
         }
 
-        model.addAttribute("design", new Taco());
+        model.addAttribute("taco", new Taco());
 
         return "design";
     }
@@ -49,6 +53,12 @@ public class DesignController {
         return list.stream()
         .filter(i -> i.getType().equals(type))
         .collect(Collectors.toList());
+    }
+
+    @PostMapping
+    public String processDesignForm(Taco taco) {
+        log.info("Processing taco: " + taco.getName());
+        return "redirect:/orders/current";
     }
 
 }
