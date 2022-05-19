@@ -4,6 +4,8 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import javax.validation.Valid;
+
 import com.konopackipio1.tacocloud.model.Ingredient;
 import com.konopackipio1.tacocloud.model.Taco;
 import com.konopackipio1.tacocloud.model.TacoOrder;
@@ -11,6 +13,7 @@ import com.konopackipio1.tacocloud.model.Ingredient.Type;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -33,7 +36,10 @@ public class DesignController {
 
     @PostMapping
     // @ModerAttribute before TacoOrder will retrieve it from model
-    public String processDesignForm(Taco taco, @ModelAttribute TacoOrder tacoOrder) {
+    public String processDesignForm(@Valid Taco taco, Errors errors, @ModelAttribute TacoOrder tacoOrder) {
+        if(errors.hasErrors()) {
+            return "design";
+        }
         tacoOrder.addTaco(taco);
         log.info("Processing taco: {}" + taco);
         return "redirect:/orders/current";

@@ -6,8 +6,6 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.view;
 
-import com.konopackipio1.tacocloud.controllers.HomeController;
-
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,7 +16,7 @@ import org.springframework.test.web.servlet.MockMvc;
 // This annotation allows test running with spring boot app, just need to add it
 @ExtendWith(SpringExtension.class)
 // This extension adds more functionality for web testing
-@WebMvcTest(HomeController.class)
+@WebMvcTest
 public class HomeControllerTests {
 
     @Autowired
